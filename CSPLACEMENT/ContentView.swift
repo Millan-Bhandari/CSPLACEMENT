@@ -8,36 +8,48 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var isodd = false
-    @State private var num1 = ""
-    @State private var text = ""
+    @State var num1 = ""
+    @State var num2 = ""
+    @State var iseven = false
+    @State var text = ""
     var body: some View {
-        TextField("Enter num", text: $num1)
-        Button("Submit") {
-            is_odd()
-            returnvar()
+        HStack {
+            Text("Num 1")
+            TextField("", text: $num1)
+                .frame(width: 50, height: 50, alignment: .center)
+            Text("Num 2")
+            TextField("", text: $num2)
+                .frame(width: 50, height: 50, alignment: .center)
+            Button("Confirm") {
+                both_even()
+                update()
+                
+            }
         }
         Text(text)
     }
-    func is_odd(){
-        if let num = Int(num1) {
-            if num % 2 == 0 {
-                isodd = false
-            }
-            else {
-                isodd = true
+    func both_even() {
+        if let firstnum = Int(num1) {
+            if let secondnum = Int(num2) {
+                if firstnum % 2 == 0 {
+                    if secondnum % 2 == 0 {
+                        iseven = true
+                    }
+                }
+                else {
+                    iseven = false
+                }
             }
         }
     }
-    func returnvar() {
-        if isodd == true {
+    func update() {
+        if iseven == true {
             text = "true"
         }
         else {
             text = "false"
         }
     }
-
 }
 
 struct ContentView_Previews: PreviewProvider {
