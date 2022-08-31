@@ -8,46 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var num1 = ""
-    @State var num2 = ""
-    @State var iseven = false
-    @State var text = ""
+    @State var imput1 = ""
+    @State var imput2 = ""
+    @State var final = 0
     var body: some View {
         HStack {
             Text("Num 1")
-            TextField("", text: $num1)
-                .frame(width: 50, height: 50, alignment: .center)
+            TextField("", text: $imput1)
             Text("Num 2")
-            TextField("", text: $num2)
-                .frame(width: 50, height: 50, alignment: .center)
-            Button("Confirm") {
-                both_even()
-                update()
-                
-            }
+            TextField("", text: $imput2)
         }
-        Text(text)
+        Button("Submit") {
+            distance_between()
+        }
+        Text("\(final)")
     }
-    func both_even() {
-        if let firstnum = Int(num1) {
-            if let secondnum = Int(num2) {
-                if firstnum % 2 == 0 {
-                    if secondnum % 2 == 0 {
-                        iseven = true
-                    }
-                }
-                else {
-                    iseven = false
-                }
+    func distance_between() {
+        if let imputA = Int(imput1) {
+            if let imputB = Int(imput2) {
+                final = abs(imputA - imputB)
             }
-        }
-    }
-    func update() {
-        if iseven == true {
-            text = "true"
-        }
-        else {
-            text = "false"
         }
     }
 }
